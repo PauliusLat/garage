@@ -37,6 +37,7 @@ Route::group(['prefix' => 'mechanics'], function(){
     Route::get('', 'TruckController@index')->name('truck.index');
     Route::get('create', 'TruckController@create')->name('truck.create');
     Route::post('store', 'TruckController@store')->name('truck.store');
+    Route::get('show/{truck}', 'TruckController@show')->name('truck.show');
     Route::get('edit/{truck}', 'TruckController@edit')->name('truck.edit');
     Route::post('update/{truck}', 'TruckController@update')->name('truck.update');
     Route::post('/delete/{truck}', 'TruckController@destroy')->name('truck.destroy');

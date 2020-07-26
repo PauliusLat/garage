@@ -11,6 +11,7 @@
                <div class="card-body">
                 @foreach ($mechanics as $mechanic)
                 <a href="{{route('mechanic.show',[$mechanic])}}">{{$mechanic->name}} {{$mechanic->surname}}</a>
+                Turi sunkvežimių: {{count($mechanic->mechanicTrucks)}}
                 <br>
                 @endforeach
                </div>
