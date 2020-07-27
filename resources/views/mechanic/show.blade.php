@@ -8,7 +8,23 @@
            <div class="card">
                <div class="card-header">Mechaniko duomenys</div>
                <div class="card-body">
-                <form method="GET" style="display: inline-block; float:left" action="{{route('mechanic.edit', [$mechanic])}}">
+                                      
+                <div class="form-group">
+                  <img src="{{asset('images/'.$mechanic->portret)}}" style="width: 100px; height: auto; float:right">
+                  <small class="form-text text-muted">Vardas:</small>
+                  {{$mechanic->name}}
+                  <br>                
+                  <small class="form-text text-muted">Pavardė:</small>
+                  {{$mechanic->surname}}
+                </div>
+                <div class="form-group">
+                  <small class="form-text text-muted">Priskirti sunkvežimiai:</small>
+                  @foreach ($mechanic->mechanicTrucks as $truck)
+                  {{$truck->maker}} | {{$truck->plate}}
+                  @endforeach
+                  <br>
+                  <br>
+                  <form method="GET" style="display: inline-block; float:left" action="{{route('mechanic.edit', [$mechanic])}}">
                     @csrf
                     <button type="submit">Koreaguoti</button>
                   </form>
@@ -16,20 +32,7 @@
                     @csrf
                     <button type="submit">Ištrinti</button>
                   </form>
-                  
-                <br>
-                <br>
-                <small class="form-text text-muted">Vardas:</small>
-                {{$mechanic->name}}
-                <br>                
-                <small class="form-text text-muted">Pavardė:</small>
-                {{$mechanic->surname}}
-                <br>
-                <small class="form-text text-muted">Priskirti sunkvežimiai:</small>
-                @foreach ($mechanic->mechanicTrucks as $truck)
-                {{$truck->maker}} | {{$truck->plate}}
-                @endforeach
-                <br>
+                </div>
                </div>
            </div>
        </div>

@@ -64,6 +64,18 @@ class MechanicController extends Controller
         $mechanic = new Mechanic;
         $mechanic->name = $request->mechanic_name;
         $mechanic->surname = $request->mechanic_surname;
+        $mechanic->portret = '';
+
+        if ($request->hasFile('portret')) {
+            $image = $request->file('portret');
+            $name = $request->file('portret')->getClientOriginalName();
+            $destinationPath = public_path('/images');
+            $image->move($destinationPath, $name);
+            $mechanic->portret = $name;
+        }else{
+            $mechanic->portret = 'def.jpg';
+        }
+
         $mechanic->save();
         return redirect()->route('mechanic.index')->with('success_message', 'Įrašas sukurtas!');    
     }
