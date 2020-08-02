@@ -18,12 +18,26 @@ class TruckController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $trucks = Truck::all();
-        return view('truck.index', ['trucks' => $trucks]);
+        $mechanics = Mechanic::all();
+        $selectId = 0;
+
+        if($request->mechanic_id){
+            $trucks = Truck::where('mechanic_id', $request->mechanic_id)->get();
+            $selectId = $request->mechanic_id;
+
+        }elseif($request->maker){
+            $trucks = Truck::where('maker', $request->maker)->get();
+
+        }else{
+            $trucks = Truck::orderBy('maker')->get();
+        }
+
+        return view('truck.index', compact('trucks', 'mechanics', 'selectId'));
     }
 
+    
     /**
      * Show the form for creating a new resource.
      *
@@ -140,7 +154,6 @@ class TruckController extends Controller
      */
     public function destroy(Truck $truck)
     {
-       
         $truck->delete();
         return redirect()->route('truck.index')->with('success_message', 'Duomenys ištrinti!');    }
 }
