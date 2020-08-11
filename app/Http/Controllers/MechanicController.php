@@ -131,6 +131,13 @@ class MechanicController extends Controller
         }
         $mechanic->name = $request->mechanic_name;
         $mechanic->surname = $request->mechanic_surname;
+        if ($request->hasFile('portret')) {
+            $image = $request->file('portret');
+            $name = $request->file('portret')->getClientOriginalName();
+            $destinationPath = public_path('/images');
+            $image->move($destinationPath, $name);
+            $mechanic->portret = $name;
+        }
         $mechanic->save();
         return redirect()->route('mechanic.index')->with('success_message', 'Duomenys atnaujinti!');    }
 
@@ -146,5 +153,6 @@ class MechanicController extends Controller
             return redirect()->route('mechanic.index')->with('info_message', 'Trinti negalima, nes turi sunkvežimių!');
         }
         $mechanic->delete();
-        return redirect()->route('mechanic.index')->with('success_message', 'Įrašas ištrintas!');    }
+        return redirect()->route('mechanic.index')->with('success_message', 'Įrašas ištrintas!');   
+     }
 }

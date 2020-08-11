@@ -18,6 +18,10 @@
                             <label>Pavardė:</label>
                             <input type="text" name="mechanic_surname"  class="form-control" value="{{old('mechanic_surname',$mechanic->surname)}}">
                         </div>
+                        <label>Mechaniko foto:</label>
+                        <br>
+                        <img src="{{asset("images/$mechanic->portret")}}" style="width:150px; height:auto">
+                        <input type="file" name="portret">
                         @csrf
                         <button type="submit">Išsaugoti</button>
                      </form>

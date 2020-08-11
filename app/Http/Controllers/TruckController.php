@@ -65,7 +65,7 @@ class TruckController extends Controller
             'truck_make_year' => ['required', 'min:4', 'max:10'],
         ],
         [
-            'truck_maker.reqired' => 'Įveskite Gamintoją!',
+            'truck_maker.required' => 'Įveskite Gamintoją!',
             'truck_maker.min' => 'Patikrinkite Gamintoją!',
             'truck_plate.required' => 'Įveskite Valst.nr!',
             'truck_plate.min' => 'Paikrinkite Valst.Nr.!',
@@ -127,7 +127,7 @@ class TruckController extends Controller
             'truck_plate' => ['required', 'min:6', 'max:9'],
         ],
         [
-            'truck_maker.reqired' => 'Įveskite Gamintoją!',
+            'truck_maker.required' => 'Įveskite Gamintoją!',
             'truck_maker.min' => 'Per trumpas įrašas!',
             'truck_plate.required' => 'Įveskite Valst.nr!',
             'truck_plate.min' => 'Per trumpas įrašas!',
@@ -155,5 +155,6 @@ class TruckController extends Controller
     public function destroy(Truck $truck)
     {
         $truck->delete();
-        return redirect()->route('truck.index')->with('success_message', 'Duomenys ištrinti!');    }
+        return redirect()->route('truck.index')->with('success_message', 'Duomenys ištrinti!');    
+    }
 }
